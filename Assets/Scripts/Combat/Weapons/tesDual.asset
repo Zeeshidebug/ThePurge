@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fa1505244955f454c9df8d12fba7f3c3, type: 3}
-  m_Name: tesMelee
+  m_Name: tesDual
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
-  weaponSprite: {fileID: 21300000, guid: dfb9e9bc0f87a5447b6cb7d25c4aace7, type: 3}
-  weaponName: tes_Swoerd1
+  weaponSprite: {fileID: 21300000, guid: b1ef61adfb3debc47991192bc9e07a99, type: 3}
+  weaponName: Claymore
   description: 
-  weaponCategory: 0
+  weaponCategory: 2
   weaponType: 0
-  damage: 1
+  damage: 2
   attackSpeed: 1
-  projectilePrefab: {fileID: 4058012990486045806, guid: a0de7c1a8b7a1f04885f3117ff982d0e, type: 3}
+  projectilePrefab: {fileID: 5398555451283351959, guid: 490f5e8cfb6bebd46b335776d39f3f24, type: 3}
   projectileSpeed: 0
   slashRadius: 0
   slashAngle: 0

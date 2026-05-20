@@ -8,9 +8,6 @@ public class SlashAttack : MonoBehaviour
     [Header("Hit Text")]
     [SerializeField] private GameObject hitTextPrefab;
 
-    [Header("Slash Settings")]
-    [SerializeField] private float slashRadius = 1.5f;
-    [SerializeField] private float slashAngle = 90f;
 
     [Header("Effect")]
     [SerializeField] private GameObject slashEffectPrefab;
@@ -18,17 +15,15 @@ public class SlashAttack : MonoBehaviour
     [Header("Enemy Layer")]
     [SerializeField] private LayerMask enemyLayer;
 
-    private void Update()
-    {
+    [SerializeField]
+    private WeaponData debugWeapon;
 
+    public void PerformAttack(WeaponData weapon)
+    {
+        Slash(weapon);
     }
 
-    public void PerformAttack()
-    {
-        Slash();
-    }
-
-    private void Slash()
+    private void Slash(WeaponData weapon)
     {
         Instantiate(
             slashEffectPrefab,
@@ -38,7 +33,7 @@ public class SlashAttack : MonoBehaviour
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(
             attackPoint.position,
-            slashRadius,
+            weapon.slashRadius,
             enemyLayer
         );
 
@@ -53,7 +48,7 @@ public class SlashAttack : MonoBehaviour
             float angleToEnemy =
                 Vector2.Angle(slashDirection, directionToEnemy);
 
-            if (angleToEnemy <= slashAngle / 2f)
+            if (angleToEnemy <= weapon.slashAngle / 2f)
             {
                 HitStopManager.Instance.Stop(0.08f);
                 CameraShake.Instance.Shake(0.1f, 0.1f);
@@ -77,21 +72,34 @@ public class SlashAttack : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        if (attackPoint == null) return;
+        if (attackPoint == null)
+            return;
+
+        PlayerInventory inventory =
+            GetComponent<PlayerInventory>();
+
+        if (inventory == null)
+            return;
+
+        WeaponData weapon =
+            inventory.slot1.equippedWeapon;
+
+        if (weapon == null)
+            return;
 
         Gizmos.color = Color.red;
 
         // Radius
-        Gizmos.DrawWireSphere(attackPoint.position, slashRadius);
+        Gizmos.DrawWireSphere(attackPoint.position, debugWeapon.slashRadius);
 
         Vector2 slashDirection =
             ((Vector2)attackPoint.position - (Vector2)transform.position).normalized;
 
         Quaternion leftRayRotation =
-            Quaternion.Euler(0, 0, slashAngle / 2);
+            Quaternion.Euler(0, 0, debugWeapon.slashAngle / 2);
 
         Quaternion rightRayRotation =
-            Quaternion.Euler(0, 0, -slashAngle / 2);
+            Quaternion.Euler(0, 0, -debugWeapon.slashAngle / 2);
 
         Vector2 leftRayDirection = leftRayRotation * slashDirection;
         Vector2 rightRayDirection = rightRayRotation * slashDirection;
@@ -100,12 +108,12 @@ public class SlashAttack : MonoBehaviour
 
         Gizmos.DrawLine(
             attackPoint.position,
-            (Vector2)attackPoint.position + leftRayDirection * slashRadius
+            (Vector2)attackPoint.position + leftRayDirection * debugWeapon.slashRadius
         );
 
         Gizmos.DrawLine(
             attackPoint.position,
-            (Vector2)attackPoint.position + rightRayDirection * slashRadius
+            (Vector2)attackPoint.position + rightRayDirection * debugWeapon.slashRadius
         );
     }
 }

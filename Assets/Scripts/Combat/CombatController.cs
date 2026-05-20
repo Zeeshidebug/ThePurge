@@ -13,6 +13,9 @@ public class CombatController : MonoBehaviour
 
     private void Update()
     {
+        if (!GameStateManager.Instance.IsGameplay())
+            return;
+
         HandleSlot1Attack();
         HandleSlot2Attack();
 
@@ -20,12 +23,21 @@ public class CombatController : MonoBehaviour
         slot2CooldownTimer -= Time.deltaTime;
     }
 
+    private float GetAttackCooldown(WeaponData weapon)
+    {
+        return weapon.attackSpeed;
+    }
+
     private void HandleSlot1Attack()
     {
+        if (inventory.slot1.isLocked)
+            return;
+
         WeaponData weapon =
             inventory.slot1.equippedWeapon;
 
-        if (weapon == null) return;
+        if (weapon == null)
+            return;
 
         bool input =
             weapon.IsAutoAttack
@@ -36,16 +48,21 @@ public class CombatController : MonoBehaviour
         {
             ExecuteAttack(weapon);
 
-            slot1CooldownTimer = weapon.attackSpeed;
+            slot1CooldownTimer =
+                GetAttackCooldown(weapon);
         }
     }
 
     private void HandleSlot2Attack()
     {
+        if (inventory.slot2.isLocked)
+            return;
+
         WeaponData weapon =
             inventory.slot2.equippedWeapon;
 
-        if (weapon == null) return;
+        if (weapon == null)
+            return;
 
         bool input =
             weapon.IsAutoAttack
@@ -56,7 +73,8 @@ public class CombatController : MonoBehaviour
         {
             ExecuteAttack(weapon);
 
-            slot2CooldownTimer = weapon.attackSpeed;
+            slot2CooldownTimer =
+                GetAttackCooldown(weapon);
         }
     }
 
@@ -65,7 +83,7 @@ public class CombatController : MonoBehaviour
         switch (weapon.weaponType)
         {
             case WeaponType.Melee:
-                slashAttack.PerformAttack();
+                slashAttack.PerformAttack(weapon);
                 break;
 
             case WeaponType.Ranged:

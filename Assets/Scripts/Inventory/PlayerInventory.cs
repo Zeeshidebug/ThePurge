@@ -1,13 +1,19 @@
 using UnityEngine;
+using Random = UnityEngine.Random;
+using System;
 
 public class PlayerInventory : MonoBehaviour
 {
+    private WeaponData pendingWeapon;
+    public Action OnInventoryChanged;
+
     [Header("Pickup Settings")]
     [SerializeField] private GameObject weaponPickupPrefab;
 
     [Header("Inventory Slots")]
     public InventorySlot slot1;
     public InventorySlot slot2;
+    private WeaponPickup pendingPickup;
 
     private void Start()
     {
@@ -21,27 +27,32 @@ public class PlayerInventory : MonoBehaviour
 
         targetSlot.equippedWeapon = weapon;
 
-        HandleDualWield(weapon, slotIndex);
+        RefreshSlotLocks();
+
+        OnInventoryChanged?.Invoke();
 
         DebugInventory();
     }
 
-    private void HandleDualWield(WeaponData weapon, int slotIndex)
+    private void RefreshSlotLocks()
     {
-        // Reset lock dulu
         slot1.isLocked = false;
         slot2.isLocked = false;
 
-        if (weapon.OccupyTwoSlots)
+        if (
+            slot1.equippedWeapon != null &&
+            slot1.equippedWeapon.OccupyTwoSlots
+        )
         {
-            if (slotIndex == 1)
-            {
-                slot2.isLocked = true;
-            }
-            else
-            {
-                slot1.isLocked = true;
-            }
+            slot2.isLocked = true;
+        }
+
+        if (
+            slot2.equippedWeapon != null &&
+            slot2.equippedWeapon.OccupyTwoSlots
+        )
+        {
+            slot1.isLocked = true;
         }
     }
 
@@ -60,33 +71,31 @@ public class PlayerInventory : MonoBehaviour
             : "Empty"));
     }
 
-    public void PickupWeapon(WeaponData weapon)
+    public bool PickupWeapon(WeaponData weapon, WeaponPickup pickup)
     {
-        // Slot 1 kosong
-        if (slot1.equippedWeapon == null)
+        if (
+            slot1.equippedWeapon == null &&
+            !slot1.isLocked
+        )
         {
             EquipWeapon(weapon, 1);
-            return;
+            return true;
         }
 
-        // Slot 2 kosong
-        if (slot2.equippedWeapon == null)
+        if (
+            slot2.equippedWeapon == null &&
+            !slot2.isLocked
+        )
         {
             EquipWeapon(weapon, 2);
-            return;
+            return true;
         }
 
-        // SAVE OLD WEAPON DULU
-        WeaponData oldWeapon =
-            slot1.equippedWeapon;
+        pendingWeapon = weapon;
+        pendingPickup = pickup;
 
-        // DROP OLD WEAPON
-        DropWeapon(oldWeapon);
-
-        // REPLACE SLOT
-        EquipWeapon(weapon, 1);
-
-        Debug.Log("Inventory Full - Replaced Slot 1");
+        InventorySwapUI.Instance.Open(this);
+        return false;
     }
 
     private void DropWeapon(WeaponData weapon)
@@ -113,5 +122,29 @@ public class PlayerInventory : MonoBehaviour
         ).normalized;
 
         pickup.Launch(randomDirection, 3f);
+    }
+
+    public void ReplaceWeapon(int slotIndex)
+    {
+        InventorySlot targetSlot =
+            slotIndex == 1 ? slot1 : slot2;
+
+        WeaponData oldWeapon =
+            targetSlot.equippedWeapon;
+
+        DropWeapon(oldWeapon);
+
+        EquipWeapon(pendingWeapon, slotIndex);
+
+        if (pendingPickup != null)
+        {
+            Destroy(
+                pendingPickup.gameObject
+            );
+
+            pendingPickup = null;
+        }
+
+        pendingWeapon = null;
     }
 }

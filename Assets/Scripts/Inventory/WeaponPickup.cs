@@ -32,11 +32,29 @@ public class WeaponPickup : MonoBehaviour
 
     private void Update()
     {
-        if (playerNearby && canPickup && Input.GetKeyDown(KeyCode.E))
-        {
-            playerInventory.PickupWeapon(weaponData);
+        if (!GameStateManager.Instance.IsGameplay())
+            return;
 
-            Destroy(gameObject);
+        if (
+            playerNearby &&
+            canPickup &&
+            Input.GetKeyDown(KeyCode.E)
+        )
+        {
+            bool pickedUp =
+                playerInventory
+                .PickupWeapon(
+                    weaponData, this
+                );
+
+            Debug.Log(
+"Picked Up: " + pickedUp
+);
+
+            if (pickedUp)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 
@@ -66,7 +84,7 @@ public class WeaponPickup : MonoBehaviour
         spriteRenderer.sprite = weaponData.weaponSprite;
     }
 
-        public void Launch(Vector2 direction, float force)
+    public void Launch(Vector2 direction, float force)
     {
         rb.AddForce(direction * force, ForceMode2D.Impulse);
     }
