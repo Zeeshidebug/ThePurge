@@ -1,11 +1,18 @@
 using UnityEngine;
-
 public class SlashEffect : MonoBehaviour
 {
-    [SerializeField] private float lifeTime = 0.15f;
+    private float lifeTime;
 
-    private void Start()
+    public void Initialize(
+        WeaponData weapon
+    )
     {
-        Destroy(gameObject, lifeTime);
+        lifeTime =
+            weapon.slashEffectDuration;
+
+        Destroy(
+            gameObject,
+            lifeTime
+        );
     }
 }

@@ -18,8 +18,21 @@ MonoBehaviour:
   weaponCategory: 0
   weaponType: 0
   damage: 1
-  attackSpeed: 1
-  projectilePrefab: {fileID: 4058012990486045806, guid: a0de7c1a8b7a1f04885f3117ff982d0e, type: 3}
+  attackSpeed: 0.2
+  critChance: 0
+  critMultiplier: 2
+  statusEffect: 2
+  effectChance: 100
+  effectDuration: 10
+  effectDamage: 1
+  projectilePrefab: {fileID: 0}
   projectileSpeed: 0
-  slashRadius: 0
-  slashAngle: 0
+  projectileLifetime: 0
+  slashRadius: 1
+  slashAngle: 90
+  slashEffectPrefab: {fileID: 4058012990486045806, guid: a0de7c1a8b7a1f04885f3117ff982d0e, type: 3}
+  slashEffectDuration: 0.1
+  minChargeTime: 0.3
+  maxChargeTime: 1.5
+  minChargeMultiplier: 1
+  maxChargeMultiplier: 3

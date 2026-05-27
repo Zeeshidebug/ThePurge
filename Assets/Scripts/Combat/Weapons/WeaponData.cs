@@ -22,16 +22,35 @@ public class WeaponData : ScriptableObject
     [Header("Combat Stats")]
     public int damage;
     public float attackSpeed;
+    public float critChance = 0f;
+    public float critMultiplier = 2f;
+
+    [Header("Status Effect")]
+
+    public StatusEffectType statusEffect;
+
+    public float effectChance;
+
+    public float effectDuration;
+
+    public float effectDamage;
 
     [Header("Ranged Settings")]
     public GameObject projectilePrefab;
     public float projectileSpeed;
+    public float projectileLifetime;
 
     [Header("Melee Settings")]
     public float slashRadius;
     public float slashAngle;
+    public GameObject slashEffectPrefab;
+    public float slashEffectDuration;
 
-    // AUTO PROPERTIES
+    [Header("Charge Settings")]
+    public float minChargeTime = 0.3f;
+    public float maxChargeTime = 1.5f;
+    public float minChargeMultiplier = 1f;
+    public float maxChargeMultiplier = 3f;
 
     public bool IsAutoAttack =>
         weaponCategory == WeaponCategory.Light ||

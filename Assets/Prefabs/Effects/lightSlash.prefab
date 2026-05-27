@@ -78,8 +78,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 28942005
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: b31968f5e1d377e41a5999ec50b63406, type: 3}
@@ -104,4 +104,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43153ce356557854e82fded498e0f8fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SlashEffect
-  lifeTime: 0.15

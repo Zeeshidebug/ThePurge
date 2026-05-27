@@ -3,11 +3,10 @@ using UnityEngine;
 public class RangedAttack : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform attackPoint;
     [SerializeField] private Transform player;
 
-    public void PerformAttack()
+    public void PerformAttack(WeaponData weapon, DamageData damageData)
     {
         Vector2 direction =
             (attackPoint.position - player.position)
@@ -15,13 +14,18 @@ public class RangedAttack : MonoBehaviour
 
         GameObject bullet =
             Instantiate(
-                bulletPrefab,
+                weapon.projectilePrefab,
                 attackPoint.position,
                 Quaternion.identity
             );
 
-        bullet
-            .GetComponent<Bullet>()
-            .SetDirection(direction);
+        Bullet bulletScript =
+            bullet.GetComponent<Bullet>();
+
+        bulletScript.Initialize(
+            direction,
+            weapon,
+            damageData
+        );
     }
 }

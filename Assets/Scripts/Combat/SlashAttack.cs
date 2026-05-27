@@ -5,9 +5,6 @@ public class SlashAttack : MonoBehaviour
     [Header("References")]
     [SerializeField] private Transform attackPoint;
 
-    [Header("Hit Text")]
-    [SerializeField] private GameObject hitTextPrefab;
-
 
     [Header("Effect")]
     [SerializeField] private GameObject slashEffectPrefab;
@@ -17,19 +14,27 @@ public class SlashAttack : MonoBehaviour
 
     [SerializeField]
     private WeaponData debugWeapon;
-
-    public void PerformAttack(WeaponData weapon)
+    public HitData PerformAttack(WeaponData weapon, DamageData damageData)
     {
-        Slash(weapon);
+        return Slash(weapon, damageData);
     }
 
-    private void Slash(WeaponData weapon)
+    private HitData Slash(WeaponData weapon, DamageData damageData)
     {
-        Instantiate(
-            slashEffectPrefab,
-            attackPoint.position,
-            attackPoint.rotation
-        );
+        HitData hitData = null;
+        bool hitEnemy = false;
+
+        GameObject slashEffect =
+            Instantiate(
+                weapon.slashEffectPrefab,
+                attackPoint.position,
+                attackPoint.rotation
+            );
+
+        SlashEffect effect =
+            slashEffect.GetComponent<SlashEffect>();
+
+        effect.Initialize(weapon);
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(
             attackPoint.position,
@@ -50,10 +55,28 @@ public class SlashAttack : MonoBehaviour
 
             if (angleToEnemy <= weapon.slashAngle / 2f)
             {
-                HitStopManager.Instance.Stop(0.08f);
-                CameraShake.Instance.Shake(0.1f, 0.1f);
+                hitData = new HitData();
+
+                hitData.damageData =
+                    damageData;
+
+                hitData.hitPosition =
+                    enemy.transform.position;
+
+                EnemyCombat enemyCombat =
+                enemy.GetComponent<EnemyCombat>();
+
+                if (enemyCombat != null)
+                {
+                    enemyCombat.TakeHit(
+                        hitData
+                    );
+                }
+
                 GameObject hitText = Instantiate(
-                    hitTextPrefab,
+                    CombatVisualManager
+                    .Instance
+                    .GetHitTextPrefab(),
                     enemy.transform.position + new Vector3(
                     Random.Range(-0.3f, 0.3f),
                     Random.Range(-0.3f, 0.3f),
@@ -61,12 +84,15 @@ public class SlashAttack : MonoBehaviour
                     ),
                     Quaternion.identity
                 );
-                hitText.GetComponent<HitText>().SetText("Hit!");
+                hitText.GetComponent<HitText>().SetDamageText(
+                        damageData
+                    );
                 Debug.Log("Enemy Hit!");
 
 
             }
         }
+        return hitData;
 
     }
 
