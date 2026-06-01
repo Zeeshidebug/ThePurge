@@ -3,14 +3,18 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
-    [SerializeField] private float moveSpeed = 5f;
-
     private Rigidbody2D rb;
     private Vector2 movement;
+
+    private PlayerStats playerStats;
+
+    [SerializeField]
+    private float acceleration = 15f;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        playerStats = GetComponent<PlayerStats>();
     }
 
     private void Update()
@@ -29,6 +33,17 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.linearVelocity = movement * moveSpeed;
+        Vector2 targetVelocity =
+            movement *
+            playerStats
+            .GetMoveSpeed();
+
+        rb.linearVelocity =
+            Vector2.Lerp(
+                rb.linearVelocity,
+                targetVelocity,
+                acceleration *
+                Time.fixedDeltaTime
+            );
     }
 }

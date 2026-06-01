@@ -3,11 +3,23 @@ using UnityEngine;
 public class DoorTrigger : MonoBehaviour
 {
     private bool playerNearby;
+    private bool isLocked;
+    private SpriteRenderer doorSprite;
+
+    private void Awake()
+    {
+        doorSprite =
+            GetComponent<
+                SpriteRenderer
+            >();
+    }
 
     private void Update()
     {
         if (
             playerNearby
+            &&
+            !isLocked
             &&
             Input.GetKeyDown(
                 KeyCode.E
@@ -16,7 +28,7 @@ public class DoorTrigger : MonoBehaviour
         {
             RoomManager
             .Instance
-            .GenerateRoom();
+            .NextRoom();
         }
     }
 
@@ -46,5 +58,21 @@ public class DoorTrigger : MonoBehaviour
         {
             playerNearby = false;
         }
+    }
+
+    public void LockDoor()
+    {
+        isLocked = true;
+
+        doorSprite.color =
+            Color.red;
+    }
+
+    public void UnlockDoor()
+    {
+        isLocked = false;
+
+        doorSprite.color =
+            Color.green;
     }
 }

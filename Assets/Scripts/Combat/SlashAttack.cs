@@ -11,6 +11,7 @@ public class SlashAttack : MonoBehaviour
 
     [Header("Enemy Layer")]
     [SerializeField] private LayerMask enemyLayer;
+    [SerializeField] private LayerMask wallLayer;
 
     [SerializeField]
     private WeaponData debugWeapon;
@@ -22,6 +23,7 @@ public class SlashAttack : MonoBehaviour
     private HitData Slash(WeaponData weapon, DamageData damageData)
     {
         HitData hitData = null;
+        bool hitSuccess = false;
         bool hitEnemy = false;
 
         GameObject slashEffect =
@@ -66,11 +68,50 @@ public class SlashAttack : MonoBehaviour
                 EnemyCombat enemyCombat =
                 enemy.GetComponent<EnemyCombat>();
 
+                BossCombat bossCombat =
+                enemy.GetComponent<BossCombat>();
+
+                float distanceToEnemy =
+                Vector2.Distance(
+                    attackPoint.position,
+                    enemy.transform.position
+                );
+
+                RaycastHit2D wallHit =
+                Physics2D.Raycast(
+                    attackPoint.position,
+
+                    directionToEnemy,
+
+                    distanceToEnemy,
+
+                    wallLayer
+                );
+
+                if (
+                    wallHit.collider
+                    != null
+                )
+                {
+                    continue;
+                }
+
                 if (enemyCombat != null)
                 {
                     enemyCombat.TakeHit(
                         hitData
                     );
+
+                    hitSuccess = true;
+                }
+
+                if (bossCombat != null)
+                {
+                    bossCombat.TakeDamage(
+                        damageData
+                    );
+
+                    hitSuccess = true;
                 }
 
                 GameObject hitText = Instantiate(
@@ -92,7 +133,12 @@ public class SlashAttack : MonoBehaviour
 
             }
         }
-        return hitData;
+        if (hitSuccess)
+        {
+            return hitData;
+        }
+
+        return null;
 
     }
 

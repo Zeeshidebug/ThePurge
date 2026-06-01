@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0def1dfeedc31a4e8311b2b87791dc1, type: 3}
+  m_Name: Weapon Database
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponDatabase
+  weaponPool:
+  - {fileID: 11400000, guid: fd54df8175f2bd146be00fd7e4835fd3, type: 2}
+  - {fileID: 11400000, guid: 4c14db2fdcad93f48b4b06d67c9b6acd, type: 2}
+  - {fileID: 11400000, guid: 062a129ac62a0bb40a2b0486115c47c8, type: 2}
+  - {fileID: 11400000, guid: 194730a41d2653e4ebfb0e77f3f9ab02, type: 2}
+  - {fileID: 11400000, guid: 670ee08ef3112304d8a956b974f5c279, type: 2}
+  - {fileID: 11400000, guid: 9e5ef721758e6c649ac9a0d1d831efdf, type: 2}
+  - {fileID: 11400000, guid: 23eded7dad11a5e419eaec84e537713b, type: 2}
+  - {fileID: 11400000, guid: 7f3e582581c1e7245b512f66ba002ab1, type: 2}
+  - {fileID: 11400000, guid: f9690df78dda1594d89dd37977578c89, type: 2}
+  - {fileID: 11400000, guid: cb3372c4000660345a3e955dcef13828, type: 2}
+  - {fileID: 11400000, guid: 37887ef165b5d5941b606a67049672ea, type: 2}
+  - {fileID: 11400000, guid: 31b20f8b544a2204b8d8c61038689396, type: 2}
+  - {fileID: 11400000, guid: cf013100243ccfc4a88b147a96f0e805, type: 2}
+  - {fileID: 11400000, guid: b1dd8bade4a9ea746be7d77e2970779a, type: 2}

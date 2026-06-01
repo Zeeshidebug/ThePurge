@@ -7,12 +7,15 @@ public class Bullet : MonoBehaviour
 
     private Vector2 direction;
     private DamageData damageData;
+    private GameObject owner;
 
-    [SerializeField] private LayerMask enemyLayer;
+    [SerializeField] private LayerMask targetLayer;
+    [SerializeField] private LayerMask wallLayer;
 
     public void Initialize(
         Vector2 dir,
-        WeaponData weapon,
+        float projectileSpeed,
+        float projectileLifetime,
         DamageData data
     )
     {
@@ -20,10 +23,10 @@ public class Bullet : MonoBehaviour
             dir.normalized;
 
         speed =
-            weapon.projectileSpeed;
+            projectileSpeed;
 
         lifeTime =
-            weapon.projectileLifetime;
+            projectileLifetime;
 
         damageData =
             data;
@@ -38,7 +41,7 @@ public class Bullet : MonoBehaviour
             Quaternion.Euler(
                 0,
                 0,
-                angle + 225f
+                angle + 90f
             );
     }
 
@@ -64,9 +67,35 @@ public class Bullet : MonoBehaviour
     Collider2D collision
 )
     {
+        Debug.Log(
+    collision.gameObject.name
+);
+        if (
+            collision.gameObject
+            ==
+            owner
+        )
+        {
+            return;
+        }
+
         if (
             ((1 << collision.gameObject.layer)
-            & enemyLayer)
+            &
+            wallLayer)
+            != 0
+        )
+        {
+            Destroy(
+                gameObject
+            );
+
+            return;
+        }
+
+        if (
+            ((1 << collision.gameObject.layer)
+            & targetLayer)
             == 0
         )
             return;
@@ -81,12 +110,32 @@ public class Bullet : MonoBehaviour
             collision.transform.position;
 
         EnemyCombat enemyCombat =
-            collision.GetComponent<EnemyCombat>();
+        collision.GetComponent<EnemyCombat>();
+
+        PlayerStats playerStats =
+        collision.GetComponent<PlayerStats>();
+
+        BossCombat bossCombat =
+        collision.GetComponent<BossCombat>();
 
         if (enemyCombat != null)
         {
             enemyCombat.TakeHit(
                 hitData
+            );
+        }
+
+        if (bossCombat != null)
+        {
+            bossCombat.TakeDamage(
+                damageData
+            );
+        }
+
+        if (playerStats != null)
+        {
+            playerStats.TakeDamage(
+                damageData.FinalDamage()
             );
         }
 
@@ -123,5 +172,12 @@ public class Bullet : MonoBehaviour
                 data.shakeDuration,
                 data.shakeStrength
             );
+    }
+
+    public void SetOwner(
+    GameObject newOwner
+)
+    {
+        owner = newOwner;
     }
 }

@@ -12,19 +12,20 @@ public class RangedAttack : MonoBehaviour
             (attackPoint.position - player.position)
             .normalized;
 
-        GameObject bullet =
+        GameObject bulletObject =
             Instantiate(
                 weapon.projectilePrefab,
                 attackPoint.position,
                 Quaternion.identity
             );
 
-        Bullet bulletScript =
-            bullet.GetComponent<Bullet>();
+        Bullet bullet =
+            bulletObject.GetComponent<Bullet>();
 
-        bulletScript.Initialize(
+        bullet.Initialize(
             direction,
-            weapon,
+            weapon.projectileSpeed,
+            weapon.projectileLifetime,
             damageData
         );
     }

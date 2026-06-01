@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(
-    menuName = "Spawn/Spawn Data"
+    menuName = "The Purge/Spawn Data"
 )]
 public class SpawnData : ScriptableObject
 {

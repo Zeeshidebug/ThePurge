@@ -10,6 +10,7 @@ public class EnemyCombat : MonoBehaviour
 
     private float currentHealth;
 
+
     private Dictionary<
         StatusEffectType,
         Coroutine
@@ -228,6 +229,16 @@ public class EnemyCombat : MonoBehaviour
             gameObject.name +
             " DIED 😭🔥"
         );
+
+        PlayerStats
+        .Instance
+        .AddSoulFragments(
+            5
+        );
+
+        RoomManager
+        .Instance
+        .EnemyKilled();
 
         Destroy(gameObject);
     }

@@ -8,30 +8,55 @@ public class SpawnManager
     private List<SpawnData>
     enemyPool;
 
-    public void SpawnEnemies(
-        List<SpawnPoint>
-        spawnPoints
-    )
+    [SerializeField]
+    private GameObject
+    bossPrefab;
+
+    public int SpawnEnemies(
+    List<SpawnPoint>
+    spawnPoints
+)
     {
-        foreach (
-            SpawnPoint point
-            in spawnPoints
+        int enemyAmount =
+            Random.Range(
+                2,
+                spawnPoints.Count + 1
+            );
+
+        List<SpawnPoint>
+        availablePoints =
+        new List<SpawnPoint>(
+            spawnPoints
+        );
+
+        for (
+            int i = 0;
+            i < enemyAmount;
+            i++
         )
         {
-            if (
-                point.category
-                !=
-                SpawnCategory.Enemy
-            )
-                continue;
-
-            SpawnData data =
-            enemyPool[
+            int randomPoint =
                 Random.Range(
                     0,
-                    enemyPool.Count
-                )
-            ];
+                    availablePoints.Count
+                );
+
+            SpawnPoint point =
+                availablePoints[
+                    randomPoint
+                ];
+
+            availablePoints.RemoveAt(
+                randomPoint
+            );
+
+            SpawnData data =
+                enemyPool[
+                    Random.Range(
+                        0,
+                        enemyPool.Count
+                    )
+                ];
 
             Instantiate(
                 data.prefab,
@@ -39,5 +64,17 @@ public class SpawnManager
                 Quaternion.identity
             );
         }
+        return enemyAmount;
+    }
+
+    public void SpawnBoss(
+    SpawnPoint bossPoint
+)
+    {
+        Instantiate(
+            bossPrefab,
+            bossPoint.transform.position,
+            Quaternion.identity
+        );
     }
 }

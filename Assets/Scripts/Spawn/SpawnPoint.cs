@@ -4,6 +4,7 @@ public enum SpawnCategory
 {
     Player,
     Enemy,
+    Boss,
     Obstacle
 }
 

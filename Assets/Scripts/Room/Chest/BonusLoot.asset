@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31f777302a85fed41bb9ba42402decfe, type: 3}
+  m_Name: BonusLoot
+  m_EditorClassIdentifier: Assembly-CSharp::LootDatabase
+  lootPool:
+  - {fileID: 11400000, guid: d5a513c792541744c8285561af146aeb, type: 2}
+  - {fileID: 11400000, guid: cb65f86fd12594a4eb83c668ac449aa5, type: 2}
+  - {fileID: 11400000, guid: 845ef97ec14a7bb4e816eafff21eca58, type: 2}
+  - {fileID: 11400000, guid: 3a3423b1330894b43863c7407691d4a6, type: 2}

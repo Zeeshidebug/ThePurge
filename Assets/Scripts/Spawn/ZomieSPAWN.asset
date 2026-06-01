@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 979491095926c424383c8cf240c35d02, type: 3}
+  m_Name: ZomieSPAWN
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnData
+  prefab: {fileID: 5001384395945866037, guid: 1438d6b45ea05e54b89bdc99f663ca55, type: 3}
+  spawnWeight: 25
+  minSpawnCount: 1
+  maxSpawnCount: 2

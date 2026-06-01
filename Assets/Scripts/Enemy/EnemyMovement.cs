@@ -1,4 +1,5 @@
 using UnityEngine;
+using Pathfinding;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -6,41 +7,47 @@ public class EnemyMovement : MonoBehaviour
 
     private EnemyCombat enemyCombat;
 
-    private Rigidbody2D rb;
-
-    private float moveSpeed;
+    private AIPath aiPath;
 
     private void Awake()
     {
-        rb =
-            GetComponent<Rigidbody2D>();
-
         enemyCombat =
             GetComponent<
                 EnemyCombat
+            >();
+
+        aiPath =
+            GetComponent<
+                AIPath
             >();
     }
 
     private void Start()
     {
-        moveSpeed =
-            enemyCombat
-            .GetEnemyData()
-            .moveSpeed;
-
         GameObject playerObject =
-            GameObject.FindGameObjectWithTag(
-                "Player"
-            );
+        GameObject
+        .FindGameObjectWithTag(
+            "Player"
+        );
 
-        if (playerObject != null)
+        if (
+            playerObject != null
+        )
         {
             player =
                 playerObject.transform;
+
+            aiPath.destination =
+                player.position;
         }
+
+        aiPath.maxSpeed =
+        enemyCombat
+        .GetEnemyData()
+        .moveSpeed;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (
             !GameStateManager
@@ -48,24 +55,45 @@ public class EnemyMovement : MonoBehaviour
             .IsGameplay()
         )
         {
-            rb.linearVelocity =
-                Vector2.zero;
+            aiPath.canMove =
+                false;
 
             return;
         }
 
-        if (player == null)
+        aiPath.canMove =
+            true;
+
+        EnemyData data =
+        enemyCombat
+        .GetEnemyData();
+
+        float distance =
+        Vector2.Distance(
+            transform.position,
+            player.position
+        );
+
+        if (
+            distance
+            <=
+            data.attackRange
+        )
+        {
+            aiPath.canMove =
+                false;
+
             return;
+        }
 
-        Vector2 direction =
-            (
-                player.position
-                -
-                transform.position
-            ).normalized;
+        if (
+            player != null
+        )
+        {
+            aiPath.destination =
+                player.position;
 
-        rb.linearVelocity =
-            direction *
-            moveSpeed;
+            aiPath.SearchPath();
+        }
     }
 }

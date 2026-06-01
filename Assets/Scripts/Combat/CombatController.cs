@@ -308,12 +308,19 @@ GetFeedbackData(
             new DamageData();
 
         damageData.damage =
-            weapon.damage;
+            weapon.damage + PlayerStats.Instance.GetDamageModifier();
 
         damageData.chargeMultiplier = 1f;
 
         damageData.critMultiplier =
-        weapon.critMultiplier;
+        weapon.critMultiplier + PlayerStats.Instance.GetCritDamageModifier();
+
+        float finalCritChance =
+        weapon.critChance
+        +
+        PlayerStats
+        .Instance
+        .GetCritChanceModifier();
 
         float effectRoll =
         Random.Range(
@@ -344,7 +351,7 @@ GetFeedbackData(
 
         damageData.isCritical =
             randomRoll <=
-            weapon.critChance;
+            finalCritChance;
 
         damageData.isMaxCharge = false;
 

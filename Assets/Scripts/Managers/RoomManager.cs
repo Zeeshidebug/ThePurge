@@ -9,7 +9,15 @@ public class RoomManager
 
     [SerializeField]
     private List<GameObject>
-    roomPool;
+    combatRoomPool;
+
+    [SerializeField]
+    private GameObject
+    upgradeRoom;
+
+    [SerializeField]
+    private GameObject
+    bossRoom;
 
     [SerializeField]
     private Transform player;
@@ -20,6 +28,14 @@ public class RoomManager
     private GameObject
     currentRoom;
     private int lastRoomIndex = -1;
+    private int roomProgress = 0;
+    private int enemyCount;
+    private int currentWave = 1;
+
+    [SerializeField]
+    private int maxWave = 3;
+
+    private DoorTrigger currentDoor;
 
     private void Awake()
     {
@@ -39,6 +55,12 @@ public class RoomManager
         >(
             FindObjectsSortMode.None
         );
+
+        bool isUpgradeRoom =
+        roomProgress == 3;
+
+        bool isBossRoom =
+        roomProgress == 5;
 
         foreach (
             EnemyCombat enemy
@@ -60,34 +82,64 @@ public class RoomManager
             );
         }
 
-        int randomIndex;
+        GameObject roomToSpawn;
 
-        do
+        if (
+            roomProgress == 3
+        )
         {
-            randomIndex =
-            Random.Range(
-                0,
-                roomPool.Count
+            roomToSpawn =
+                upgradeRoom;
+        }
+        else if (
+            roomProgress == 5
+        )
+        {
+            roomToSpawn =
+                bossRoom;
+        }
+        else
+        {
+            int randomIndex;
+
+            do
+            {
+                randomIndex =
+                Random.Range(
+                    0,
+                    combatRoomPool.Count
+                );
+            }
+            while (
+                randomIndex ==
+                lastRoomIndex
             );
 
-        }
-        while (
-            randomIndex
-            ==
-            lastRoomIndex
-        );
+            lastRoomIndex =
+                randomIndex;
 
-        lastRoomIndex =
-            randomIndex;
+            roomToSpawn =
+                combatRoomPool[
+                    randomIndex
+                ];
+        }
 
         currentRoom =
         Instantiate(
-            roomPool[
-                randomIndex
-            ],
+            roomToSpawn,
             Vector3.zero,
             Quaternion.identity
         );
+
+        currentDoor =
+        currentRoom
+        .GetComponentInChildren<
+            DoorTrigger
+        >();
+
+        AstarPath
+        .active
+        .Scan();
 
         Transform spawnPoint =
         currentRoom
@@ -104,11 +156,60 @@ public class RoomManager
                 spawnPoint.position;
         }
 
+        currentWave = 1;
+
+        if (isBossRoom)
+        {
+            SpawnWave();
+            LockDoor();
+            currentWave = 3;
+        }
+        else if (!isUpgradeRoom)
+        {
+            SpawnWave();
+            LockDoor();
+            LockChest();
+        }
+        else
+        {
+            UnlockDoor();
+            UnlockChest();
+        }
+    }
+
+    private void SpawnWave()
+    {
         SpawnPoint[] points =
         currentRoom
         .GetComponentsInChildren<
             SpawnPoint
         >();
+
+        if (
+            roomProgress == 5
+        )
+        {
+            foreach (
+                SpawnPoint point
+                in points
+            )
+            {
+                if (
+                    point.category ==
+                    SpawnCategory.Boss
+                )
+                {
+                    spawnManager
+                    .SpawnBoss(
+                        point
+                    );
+
+                    enemyCount = 1;
+
+                    return;
+                }
+            }
+        }
 
         List<SpawnPoint>
         enemyPoints =
@@ -120,8 +221,7 @@ public class RoomManager
         )
         {
             if (
-                point.category
-                ==
+                point.category ==
                 SpawnCategory.Enemy
             )
             {
@@ -131,9 +231,127 @@ public class RoomManager
             }
         }
 
+        enemyCount =
         spawnManager
         .SpawnEnemies(
             enemyPoints
         );
+    }
+
+    public void EnemyKilled()
+    {
+        enemyCount--;
+
+        Debug.Log(
+            "Enemy Left: "
+            + enemyCount
+        );
+
+        Debug.Log(
+    "Current Wave: "
+    + currentWave
+);
+
+        if (enemyCount <= 0)
+        {
+            currentWave++;
+
+            if (
+                currentWave >
+                maxWave
+            )
+            {
+                UnlockDoor();
+                UnlockChest();
+
+                Debug.Log(
+                    "ROOM CLEAR 😭🔥"
+                );
+
+                if (
+                    roomProgress == 5
+                )
+                {
+                    VictoryManager
+                    .Instance
+                    .ShowVictory();
+                }
+            }
+            else
+            {
+                Debug.Log(
+                    "WAVE "
+                    + currentWave
+                );
+
+                SpawnWave();
+            }
+        }
+    }
+
+    public void NextRoom()
+    {
+        roomProgress++;
+
+        Debug.Log(
+            "ROOM PROGRESS: "
+            + roomProgress
+        );
+
+        GenerateRoom();
+    }
+
+    private void LockDoor()
+    {
+        if (
+            currentDoor != null
+        )
+        {
+            currentDoor
+            .LockDoor();
+        }
+    }
+
+    private void LockChest()
+    {
+        LootChest chest =
+        currentRoom
+        .GetComponentInChildren<
+            LootChest
+        >();
+
+        if (
+            chest != null
+        )
+        {
+            chest.LockChest();
+        }
+    }
+
+    private void UnlockDoor()
+    {
+        if (
+            currentDoor != null
+        )
+        {
+            currentDoor
+            .UnlockDoor();
+        }
+    }
+
+    private void UnlockChest()
+    {
+        LootChest chest =
+        currentRoom
+        .GetComponentInChildren<
+            LootChest
+        >();
+
+        if (
+            chest != null
+        )
+        {
+            chest.UnlockChest();
+        }
     }
 }

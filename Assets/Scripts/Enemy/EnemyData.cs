@@ -1,7 +1,14 @@
 using UnityEngine;
 
+public enum EnemyAttackType
+{
+    Melee,
+    Ranged,
+    Boss
+}
+
 [CreateAssetMenu(
-    menuName = "Enemy/Enemy Data"
+    menuName = "The Purge/Enemy Data"
 )]
 public class EnemyData : ScriptableObject
 {
@@ -17,4 +24,26 @@ public class EnemyData : ScriptableObject
 
     [Header("Rewards")]
     public int soulReward = 5;
+
+    [Header("Attack")]
+
+    public float attackDamage = 10f;
+
+    public float attackRange = 1.5f;
+
+    public float attackCooldown = 1f;
+
+    public float attackWindup = .5f;
+
+    [Header("Ranged")]
+
+    public GameObject
+    projectilePrefab;
+
+    public float
+    projectileSpeed = 10f;
+
+    public EnemyAttackType attackType;
+
+
 }
