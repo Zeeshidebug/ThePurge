@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   enemyName: Amalgam
   maxHealth: 120
-  moveSpeed: 0.8
+  moveSpeed: 2
   damage: 10
   soulReward: 20
   attackDamage: 10

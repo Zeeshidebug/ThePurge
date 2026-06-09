@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 979491095926c424383c8cf240c35d02, type: 3}
   m_Name: ZomieSPAWN
   m_EditorClassIdentifier: Assembly-CSharp::SpawnData
-  prefab: {fileID: 5001384395945866037, guid: 1438d6b45ea05e54b89bdc99f663ca55, type: 3}
+  prefab: {fileID: 6894042602268424650, guid: f89c29687c29f1a4ba1e9a0784f76cb1, type: 3}
   spawnWeight: 25
   minSpawnCount: 1
   maxSpawnCount: 2

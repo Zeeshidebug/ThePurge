@@ -41,7 +41,7 @@ public class Bullet : MonoBehaviour
             Quaternion.Euler(
                 0,
                 0,
-                angle + 90f
+                angle + 180f
             );
     }
 

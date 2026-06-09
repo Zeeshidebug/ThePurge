@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 979491095926c424383c8cf240c35d02, type: 3}
   m_Name: SlimeSPawn
   m_EditorClassIdentifier: Assembly-CSharp::SpawnData
-  prefab: {fileID: 5001384395945866037, guid: 43e2957342c6c70429aacece00791e43, type: 3}
+  prefab: {fileID: 334250972198358741, guid: f02ab6e52b230ef4799e4dbdf430ad3d, type: 3}
   spawnWeight: 50
   minSpawnCount: 1
   maxSpawnCount: 2

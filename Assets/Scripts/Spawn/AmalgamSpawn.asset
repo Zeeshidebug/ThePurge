@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 979491095926c424383c8cf240c35d02, type: 3}
   m_Name: AmalgamSpawn
   m_EditorClassIdentifier: Assembly-CSharp::SpawnData
-  prefab: {fileID: 5001384395945866037, guid: 14ab27f91797fe34c8c28b602068f078, type: 3}
+  prefab: {fileID: 6460791708330861702, guid: db1e409b9664d7f4e9aa5d6a9a48820a, type: 3}
   spawnWeight: 7
   minSpawnCount: 1
   maxSpawnCount: 1

@@ -67,6 +67,8 @@ public class EnemyMeleeAttack
             Quaternion.identity
         );
 
+        //animasi serangan sini yak 
+
         yield return
         new WaitForSeconds(
             data.attackWindup

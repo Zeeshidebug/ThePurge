@@ -222,30 +222,31 @@ public class BossAttackController
         canAttack = false;
         isAttacking = true;
 
-        rb.linearVelocity =
-            Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
 
-        Instantiate(
-        attackCuePrefab,
-        transform.position,
-        Quaternion.identity
-    );
+        // 1. Memunculkan tanda aba-aba (Visualcue_0) di posisi Boss
+        if (attackCuePrefab != null)
+        {
+            Instantiate(attackCuePrefab, transform.position, Quaternion.identity);
+        }
 
-        yield return
-        new WaitForSeconds(
-            attackWindup
-        );
+        // 2. [TAMBAHKAN INI] Picu animasi menembak tepat saat aba-aba muncul!
+        if (animator != null)
+        {
+            animator.SetTrigger("Laser"); // Pastikan di Animator Controller sudah ada parameter Trigger bernama "Laser"
+        }
 
+        // Boss diam sejenak bersiap menembak selama durasi Attack Windup (di Inspector kamu set 1 detik)
+        yield return new WaitForSeconds(attackWindup);
+
+        // 3. Peluru laser lahir dan meluncur ke arah Player
         bossLaserAttack.Attack();
         isAttacking = false;
 
-        yield return
-        new WaitForSeconds(
-            bossCombat
-            .GetBossData()
-            .attackCooldown
+        // Menunggu cooldown (di Data kamu set 2 detik) sebelum bisa menyerang lagi
+        yield return new WaitForSeconds(
+            bossCombat.GetBossData().attackCooldown
         );
-
 
         canAttack = true;
     }

@@ -1,0 +1,494 @@
+fileFormatVersion: 2
+guid: 44856317f0bee174bbbc76b008fcbb3b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4409717803567828108
+    second: Bos2NewAttack_0
+  - first:
+      213: -9151980495449097459
+    second: Bos2NewAttack_1
+  - first:
+      213: -7485951045828557563
+    second: Bos2NewAttack_2
+  - first:
+      213: -5112893916596060663
+    second: Bos2NewAttack_3
+  - first:
+      213: 1126567148693623865
+    second: Bos2NewAttack_4
+  - first:
+      213: 2533099774645373749
+    second: Bos2NewAttack_5
+  - first:
+      213: -5570158162860966859
+    second: Bos2NewAttack_6
+  - first:
+      213: -4383372061840888873
+    second: Bos2NewAttack_7
+  - first:
+      213: -8283910495402774630
+    second: Bos2NewAttack_8
+  - first:
+      213: -4535658898680671311
+    second: Bos2NewAttack_9
+  - first:
+      213: 3898033196370755047
+    second: Bos2NewAttack_10
+  - first:
+      213: 2054196326342698447
+    second: Bos2NewAttack_11
+  - first:
+      213: -8153216935823517227
+    second: Bos2NewAttack_12
+  - first:
+      213: -3168368070259630481
+    second: Bos2NewAttack_13
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 128
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Bos2NewAttack_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 4
+        width: 127
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8c40698af6723d30800000000000000
+      internalID: 4409717803567828108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bos2NewAttack_1
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 6
+        width: 127
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0bf3798a32adf080800000000000000
+      internalID: -9151980495449097459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bos2NewAttack_2
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 9
+        width: 127
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 505cc63af2f8c1890800000000000000
+      internalID: -7485951045828557563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bos2NewAttack_3
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 9
+        width: 127
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90e3907721a5b09b0800000000000000
+      internalID: -5112893916596060663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bos2NewAttack_4
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 9
+        width: 127
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93412895ade52af00800000000000000
+      internalID: 1126567148693623865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bos2NewAttack_5
+      rect:
+        serializedVersion: 2
+        x: 642
+        y: 9
+        width: 127
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53b0c58f2d0672320800000000000000
+      internalID: 2533099774645373749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bos2NewAttack_6
+      rect:
+        serializedVersion: 2
+        x: 770
+        y: 9
+        width: 127
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53cfdefa9a2d2b2b0800000000000000
+      internalID: -5570158162860966859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bos2NewAttack_7
+      rect:
+        serializedVersion: 2
+        x: 898
+        y: 9
+        width: 127
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7db2a9775522b23c0800000000000000
+      internalID: -4383372061840888873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bos2NewAttack_8
+      rect:
+        serializedVersion: 2
+        x: 1026
+        y: 9
+        width: 127
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9f23626b43a90d80800000000000000
+      internalID: -8283910495402774630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bos2NewAttack_9
+      rect:
+        serializedVersion: 2
+        x: 1154
+        y: 9
+        width: 127
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b39cc9334a1e01c0800000000000000
+      internalID: -4535658898680671311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bos2NewAttack_10
+      rect:
+        serializedVersion: 2
+        x: 1282
+        y: 9
+        width: 127
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7edfb581a88981630800000000000000
+      internalID: 3898033196370755047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bos2NewAttack_11
+      rect:
+        serializedVersion: 2
+        x: 1410
+        y: 9
+        width: 127
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc5a19adca8f18c10800000000000000
+      internalID: 2054196326342698447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bos2NewAttack_12
+      rect:
+        serializedVersion: 2
+        x: 1538
+        y: 6
+        width: 127
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d95a8bf464f9de80800000000000000
+      internalID: -8153216935823517227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bos2NewAttack_13
+      rect:
+        serializedVersion: 2
+        x: 1666
+        y: 4
+        width: 126
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6e1c7ed602b704d0800000000000000
+      internalID: -3168368070259630481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Bos2NewAttack_0: 4409717803567828108
+      Bos2NewAttack_1: -9151980495449097459
+      Bos2NewAttack_10: 3898033196370755047
+      Bos2NewAttack_11: 2054196326342698447
+      Bos2NewAttack_12: -8153216935823517227
+      Bos2NewAttack_13: -3168368070259630481
+      Bos2NewAttack_2: -7485951045828557563
+      Bos2NewAttack_3: -5112893916596060663
+      Bos2NewAttack_4: 1126567148693623865
+      Bos2NewAttack_5: 2533099774645373749
+      Bos2NewAttack_6: -5570158162860966859
+      Bos2NewAttack_7: -4383372061840888873
+      Bos2NewAttack_8: -8283910495402774630
+      Bos2NewAttack_9: -4535658898680671311
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

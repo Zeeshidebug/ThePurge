@@ -15,9 +15,10 @@ GameObject:
   - component: {fileID: -6444055227420039466}
   - component: {fileID: 261023540979685325}
   - component: {fileID: -2811298213633010474}
-  - component: {fileID: 9103925859229859612}
   - component: {fileID: 462778967255182417}
   - component: {fileID: 4270396376753336787}
+  - component: {fileID: -3047260022542999772}
+  - component: {fileID: 2655538091992063734}
   m_Layer: 3
   m_Name: LordMalrith
   m_TagString: Untagged
@@ -198,7 +199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossAttackController
   bossPunchAttack: {fileID: -2811298213633010474}
-  bossSpikeAttack: {fileID: 9103925859229859612}
+  bossSpikeAttack: {fileID: 2655538091992063734}
   bossLaserAttack: {fileID: 462778967255182417}
   attackCuePrefab: {fileID: 901962425468824303, guid: e67b20f8eb05f904eb3e88ee09aa5930, type: 3}
   attackWindup: 1
@@ -217,18 +218,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fc790e6c85f5bb468c1445e1e1f1d36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossPunchAttack
---- !u!114 &9103925859229859612
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4577868791227435314}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce8d37d71eeef564d9ed907d1fd50292, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BossSpikeAttack
 --- !u!114 &462778967255182417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,3 +243,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a19358087be1e314b8b9502720aac4e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossMovement
+--- !u!95 &-3047260022542999772
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4577868791227435314}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 10f20c806ed9944439cb3763c5d879b5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2655538091992063734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4577868791227435314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8d37d71eeef564d9ed907d1fd50292, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossSpikeAttack
