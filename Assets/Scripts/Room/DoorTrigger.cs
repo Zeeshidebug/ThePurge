@@ -4,14 +4,24 @@ public class DoorTrigger : MonoBehaviour
 {
     private bool playerNearby;
     private bool isLocked;
-    private SpriteRenderer doorSprite;
+    private Animator animator;
 
     private void Awake()
     {
-        doorSprite =
-            GetComponent<
-                SpriteRenderer
-            >();
+        animator = GetComponentInChildren<Animator>(); 
+        
+        if (animator == null)
+        {
+            animator = GetComponent<Animator>();
+        }
+    }
+
+private void Start()
+    {
+        if (animator != null)
+        {
+           animator.SetBool("isLocked", isLocked);
+        }
     }
 
     private void Update()
@@ -64,15 +74,20 @@ public class DoorTrigger : MonoBehaviour
     {
         isLocked = true;
 
-        doorSprite.color =
-            Color.red;
+        if (animator != null)
+        {
+            animator.SetBool("isLocked", true);
+        }
     }
 
     public void UnlockDoor()
     {
         isLocked = false;
 
-        doorSprite.color =
-            Color.green;
+        if (animator != null)
+        {
+            animator.SetBool("isLocked", false);
+        }
+
     }
 }
