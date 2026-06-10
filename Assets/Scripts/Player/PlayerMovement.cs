@@ -11,10 +11,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float acceleration = 15f;
 
+    private Animator animator;
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         playerStats = GetComponent<PlayerStats>();
+
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -22,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
         if (!GameStateManager.Instance.IsGameplay())
         {
             movement = Vector2.zero;
+            if (animator != null) animator.SetFloat("speed", 0);
             return;
         }
 
@@ -29,21 +33,21 @@ public class PlayerMovement : MonoBehaviour
         movement.y = Input.GetAxisRaw("Vertical");
 
         movement = movement.normalized;
+        
+        if (animator != null)
+        {
+            animator.SetFloat("speed", movement.sqrMagnitude);
+        }
     }
 
     private void FixedUpdate()
     {
-        Vector2 targetVelocity =
-            movement *
-            playerStats
-            .GetMoveSpeed();
+        Vector2 targetVelocity = movement * playerStats.GetMoveSpeed();
 
-        rb.linearVelocity =
-            Vector2.Lerp(
-                rb.linearVelocity,
-                targetVelocity,
-                acceleration *
-                Time.fixedDeltaTime
-            );
+        rb.linearVelocity = Vector2.Lerp(
+            rb.linearVelocity,
+            targetVelocity,
+            acceleration * Time.fixedDeltaTime
+        );
     }
 }

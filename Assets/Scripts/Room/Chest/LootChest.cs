@@ -33,7 +33,16 @@ public class LootChest
     private bool opened;
 
     private bool locked = true;
+    private Animator animator;
 
+    private void Awake()
+    {
+        animator = GetComponentInChildren<Animator>();
+        if (animator == null)
+        {
+            animator = GetComponent<Animator>();
+        }
+    }
     private void OnTriggerStay2D(
         Collider2D collision
     )
@@ -72,6 +81,12 @@ public class LootChest
 
     private void OpenChest()
     {
+        opened = true;
+
+        if (animator != null)
+        {
+            animator.SetTrigger("open");
+        }
         LootData mainReward =
         RollLoot(
             mainLootDatabase
