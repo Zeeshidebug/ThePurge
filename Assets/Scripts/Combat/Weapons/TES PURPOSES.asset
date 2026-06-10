@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa1505244955f454c9df8d12fba7f3c3, type: 3}
   m_Name: TES PURPOSES
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
-  weaponSprite: {fileID: 4400241440420771329, guid: 8ce2cfca54cb67340a0cc4e8821f1bf5, type: 3}
+  weaponSprite: {fileID: 21300000, guid: 8ce2cfca54cb67340a0cc4e8821f1bf5, type: 3}
   weaponName: TES WOIU
   description: 
   weaponCategory: 0

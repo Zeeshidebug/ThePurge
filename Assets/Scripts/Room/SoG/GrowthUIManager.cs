@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 
 public class GrowthUIManager
 : MonoBehaviour
@@ -15,6 +16,24 @@ public class GrowthUIManager
     private int critDamageLevel;
 
     [SerializeField]
+    private TMP_Text damageText;
+
+    [SerializeField]
+    private TMP_Text healthText;
+
+    [SerializeField]
+    private TMP_Text defenseText;
+
+    [SerializeField]
+    private TMP_Text speedText;
+
+    [SerializeField]
+    private TMP_Text critChanceText;
+
+    [SerializeField]
+    private TMP_Text critDamageText;
+
+    [SerializeField]
     private GameObject
     growthPanel;
 
@@ -29,6 +48,7 @@ public class GrowthUIManager
         .SetActive(
             false
         );
+        RefreshUI();
     }
 
     public void OpenUI()
@@ -75,6 +95,45 @@ public class GrowthUIManager
         (level * 5);
     }
 
+    private void RefreshUI()
+    {
+        damageText.text =
+            "Cost: "
+            + GetCost(
+                damageLevel
+            );
+
+        healthText.text =
+            "Cost: "
+            + GetCost(
+                healthLevel
+            );
+
+        defenseText.text =
+            "Cost: "
+            + GetCost(
+                defenseLevel
+            );
+
+        speedText.text =
+            "Cost: "
+            + GetCost(
+                speedLevel
+            );
+
+        critChanceText.text =
+            "Cost: "
+            + GetCost(
+                critChanceLevel
+            );
+
+        critDamageText.text =
+            "Cost: "
+            + GetCost(
+                critDamageLevel
+            );
+    }
+
     public void BuyDamage()
     {
         int cost =
@@ -108,6 +167,7 @@ public class GrowthUIManager
         Debug.Log(
             "DAMAGE UP!"
         );
+        RefreshUI();
     }
 
     public void BuyHealth()
@@ -143,6 +203,7 @@ public class GrowthUIManager
         Debug.Log(
             "HEALTH UP!"
         );
+        RefreshUI();
     }
 
     public void BuyDefense()
@@ -178,6 +239,7 @@ public class GrowthUIManager
         Debug.Log(
             "DEFENSE UP!"
         );
+        RefreshUI();
     }
 
     public void BuySpeed()
@@ -213,6 +275,7 @@ public class GrowthUIManager
         Debug.Log(
             "SPEED UP!"
         );
+        RefreshUI();
     }
 
     public void BuyCritChance()
@@ -248,6 +311,7 @@ public class GrowthUIManager
         Debug.Log(
             "CRIT CHANCE UP!"
         );
+        RefreshUI();
     }
 
     public void BuyCritDamage()
@@ -283,5 +347,6 @@ public class GrowthUIManager
         Debug.Log(
             "CRIT DAMAGE UP!"
         );
+        RefreshUI();
     }
 }

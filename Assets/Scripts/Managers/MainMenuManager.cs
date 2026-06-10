@@ -4,22 +4,40 @@ using UnityEngine.SceneManagement;
 public class MainMenuManager
 : MonoBehaviour
 {
+    [SerializeField]
+    private PlayerData
+    playerData;
+
+    public void Start()
+    {
+        Debug.Log(
+            "MAIN MENU DATA ID: "
+            + playerData.GetInstanceID()
+        );
+    }
+
     public void PlayGame()
     {
+        SaveManager
+        .Instance
+        .DeleteSave();
+
+        playerData.soulFragments = 0;
+
         SceneManager
-        .LoadScene(
-            1
-        );
+        .LoadScene(1);
+
     }
 
     public void ContinueGame()
     {
-        // Implement continue game nanti kalo udah punya save system
-        Debug.Log(
-            "CONTINUE 😭🔥"
-        );
-    }
+        playerData.soulFragments =
+            SaveManager
+            .Instance
+            .LoadSoulFragments();
 
+        SceneManager.LoadScene(1);
+    }
     public void Weaponry()
     {
         // Implement weaponry nanti kalo udah punya weaponry UI
@@ -45,4 +63,6 @@ public class MainMenuManager
             "QUIT 😭🔥"
         );
     }
+
+
 }

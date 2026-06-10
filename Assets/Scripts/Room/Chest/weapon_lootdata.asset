@@ -17,4 +17,4 @@ MonoBehaviour:
   lootName: 
   description: 
   icon: {fileID: 0}
-  weight: 10
+  weight: 100

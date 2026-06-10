@@ -26,7 +26,22 @@ public class PlayerStats
         playerData.maxHealth;
 
         currentSoulFragments =
-        playerData.soulFragments;
+      playerData.soulFragments;
+
+        HUDManager
+        .Instance
+        .UpdateSoulFragments(
+            currentSoulFragments
+        );
+
+        Debug.Log(
+    "PLAYER DATA SOULS: "
+    + playerData.soulFragments
+);
+
+        Debug.Log(
+            playerData.GetInstanceID()
+        );
     }
 
     private void Awake()
@@ -43,6 +58,7 @@ public class PlayerStats
     {
         return playerData.maxHealth + hpModifier;
     }
+
 
     public void AddDamageModifier(
     float amount
@@ -118,15 +134,23 @@ public class PlayerStats
     }
 
     public void AddSoulFragments(
-    int amount
-)
+        int amount
+    )
     {
         currentSoulFragments += amount;
 
+        playerData.soulFragments =
+            currentSoulFragments;
+
+        HUDManager
+        .Instance
+        .UpdateSoulFragments(
+            currentSoulFragments
+        );
+
         Debug.Log(
             "Soul Fragments: "
-            +
-            currentSoulFragments
+            + currentSoulFragments
         );
     }
 
@@ -195,6 +219,10 @@ public class PlayerStats
             Debug.Log(
                 "PLAYER DIED 😭🔥"
             );
+
+            GameOverManager
+            .Instance
+            .ShowGameOver();
         }
     }
 
@@ -212,6 +240,34 @@ public class PlayerStats
 
         currentSoulFragments -= amount;
 
+        playerData.soulFragments =
+    currentSoulFragments;
+
+        HUDManager
+        .Instance
+        .UpdateSoulFragments(
+                currentSoulFragments
+        );
+
         return true;
     }
+
+    public void SetSoulFragments(
+    int amount
+)
+    {
+        currentSoulFragments =
+            amount;
+
+        playerData.soulFragments =
+            amount;
+
+        HUDManager
+        .Instance
+        .UpdateSoulFragments(
+            currentSoulFragments
+        );
+    }
+
+
 }

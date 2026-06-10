@@ -1,9 +1,10 @@
 using UnityEngine;
 using System.Collections.Generic;
-
+using System.Collections;
 public class RoomManager
 : MonoBehaviour
 {
+
     public static
     RoomManager Instance;
 
@@ -47,6 +48,16 @@ public class RoomManager
         GenerateRoom();
     }
 
+    private IEnumerator
+    DelayedScan()
+    {
+        yield return null;
+
+        AstarPath
+        .active
+        .Scan();
+    }
+
     public void GenerateRoom()
     {
         EnemyCombat[] enemies =
@@ -77,6 +88,40 @@ public class RoomManager
             currentRoom != null
         )
         {
+            WeaponPickup[] weapons =
+            FindObjectsByType<
+                WeaponPickup
+            >(
+                FindObjectsSortMode.None
+            );
+
+            foreach (
+                WeaponPickup weapon
+                in weapons
+            )
+            {
+                Destroy(
+                    weapon.gameObject
+                );
+            }
+
+            LootPickup[] lootDrops =
+            FindObjectsByType<
+                LootPickup
+            >(
+                FindObjectsSortMode.None
+            );
+
+            foreach (
+                LootPickup loot
+                in lootDrops
+            )
+            {
+                Destroy(
+                    loot.gameObject
+                );
+            }
+
             Destroy(
                 currentRoom
             );
@@ -137,9 +182,7 @@ public class RoomManager
             DoorTrigger
         >();
 
-        AstarPath
-        .active
-        .Scan();
+        StartCoroutine(DelayedScan());
 
         Transform spawnPoint =
         currentRoom

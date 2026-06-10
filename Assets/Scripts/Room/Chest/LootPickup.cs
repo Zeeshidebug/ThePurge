@@ -155,9 +155,22 @@ public class LootPickup
 
             case PickupType.Weapon:
 
-                Debug.Log(
-                    weaponData.weaponName
-                );
+                PlayerInventory
+                inventory =
+                collision.GetComponent<
+                    PlayerInventory
+                >();
+
+                if (
+                    inventory != null
+                )
+                {
+                    inventory
+                    .PickupWeapon(
+                        weaponData,
+                        null
+                    );
+                }
 
                 break;
 
