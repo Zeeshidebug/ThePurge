@@ -10,13 +10,21 @@ public class PauseMenuManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (
+            Input.GetKeyDown(
+                KeyCode.Escape
+            )
+        )
         {
             if (isPaused)
             {
                 ResumeGame();
             }
-            else
+            else if (
+                GameStateManager
+                .Instance
+                .IsGameplay()
+            )
             {
                 PauseGame();
             }
@@ -25,21 +33,43 @@ public class PauseMenuManager : MonoBehaviour
 
     public void ResumeGame()
     {
-        pauseMenuPanel.SetActive(false);
-        Time.timeScale = 1f;   
+        pauseMenuPanel.SetActive(
+            false
+        );
+
+        GameStateManager
+        .Instance
+        .SetState(
+            GameState.Gameplay
+        );
+
         isPaused = false;
     }
 
     public void PauseGame()
     {
-        pauseMenuPanel.SetActive(true);
-        Time.timeScale = 0f;
+        pauseMenuPanel.SetActive(
+            true
+        );
+
+        GameStateManager
+        .Instance
+        .SetState(
+            GameState.UI
+        );
+
         isPaused = true;
     }
 
     public void LoadMainMenu()
     {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene("MainMenu");
+        SaveManager
+        .Instance
+        .SaveGame();
+
+        SceneManager
+        .LoadScene(
+            0
+        );
     }
 }

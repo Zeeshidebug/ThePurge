@@ -25,6 +25,13 @@ public class PlayerStats
         currentHealth =
         playerData.maxHealth;
 
+        HealthBarManager
+        .Instance
+        .UpdateHealthUI(
+            currentHealth,
+            GetMaxHealth()
+        );
+
         currentSoulFragments =
       playerData.soulFragments;
 
@@ -57,6 +64,11 @@ public class PlayerStats
     public float GetMaxHealth()
     {
         return playerData.maxHealth + hpModifier;
+    }
+
+    public float GetCurrentHealth()
+    {
+        return currentHealth;
     }
 
 
@@ -115,6 +127,12 @@ public class PlayerStats
         hpModifier += amount;
 
         currentHealth += amount;
+        HealthBarManager
+        .Instance
+        .UpdateHealthUI(
+            currentHealth,
+            GetMaxHealth()
+        );
 
         Debug.Log(
             "Health Modifier: "
@@ -205,6 +223,13 @@ public class PlayerStats
 
         currentHealth -=
         finalDamage;
+
+        HealthBarManager
+        .Instance
+        .UpdateHealthUI(
+            currentHealth,
+            GetMaxHealth()
+        );
 
         Debug.Log(
             "Player HP: "

@@ -10,9 +10,18 @@ public class HealthBarManager : MonoBehaviour
     [Header("HUD Sprites (Order: Full to Empty)")]
     public Sprite[] hudSprites;
 
+    public static
+    HealthBarManager
+    Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     public void UpdateHealthUI(float currentHealth, float maxHealth)
     {
-   
+
         float healthPercentage = currentHealth / maxHealth;
 
         healthBarImage.fillAmount = healthPercentage;

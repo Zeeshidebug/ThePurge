@@ -2,89 +2,87 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 
-public class GameOverManager
-: MonoBehaviour
+public class GameOverManager : MonoBehaviour
 {
+    public static GameOverManager Instance;
 
-    public static
-    GameOverManager
-    Instance;
+    [Header("UI Panels")]
+    [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] private TMP_Text lostSoulText;
 
-    [SerializeField]
-    private GameObject
-    gameOverPanel;
-
-    [SerializeField]
-    private TMP_Text
-    lostSoulText;
     private int lostSouls;
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void Start()
     {
-        gameOverPanel
-        .SetActive(
-            false
-        );
+        if (gameOverPanel != null)
+        {
+            gameOverPanel.SetActive(false);
+        }
     }
 
     public void ShowGameOver()
     {
-        gameOverPanel
-        .SetActive(
-            true
-        );
+        if (gameOverPanel != null)
+        {
+            gameOverPanel.SetActive(true);
+        }
 
-        int currentSouls =
-        PlayerStats
-        .Instance
-        .GetSoulFragments();
+        if (PlayerStats.Instance != null)
+        {
+            int currentSouls = PlayerStats.Instance.GetSoulFragments();
+            lostSouls = Mathf.FloorToInt(currentSouls * 0.25f);
+            PlayerStats.Instance.SpendSoulFragments(lostSouls);
 
-        lostSouls =
-        Mathf.FloorToInt(
-            currentSouls * 0.25f
-        );
+            if (lostSoulText != null)
+            {
+                lostSoulText.text = "You Lost " + lostSouls + " Soul Fragments";
+            }
+        }
 
-        PlayerStats
-        .Instance
-        .SpendSoulFragments(
-            lostSouls
-        );
-
-        lostSoulText.text =
-        "You Lost "
-        + lostSouls
-        + " Soul Fragments";
-
-        GameStateManager
-        .Instance
-        .SetState(
-            GameState.UI
-        );
+        if (GameStateManager.Instance != null)
+        {
+            GameStateManager.Instance.SetState(GameState.UI);
+        }
     }
 
+    public void RespawnPlayer()
+    {
+        Time.timeScale = 1f;
+
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(currentSceneName);
+    }
     public void Respawn()
     {
-
-        SceneManager
-        .LoadScene(
-            SceneManager
-            .GetActiveScene()
-            .buildIndex
-        );
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    public void LoadMainMenu()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void SaveAndQuit()
     {
-        SaveManager
-        .Instance
-        .SaveGame();
+        if (SaveManager.Instance != null)
+        {
+            SaveManager.Instance.SaveGame();
+        }
 
-        SceneManager
-        .LoadScene(0);
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(0);
     }
 }
